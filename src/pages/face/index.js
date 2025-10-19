@@ -9,8 +9,11 @@ export default function FaceComparePage() {
   const [modelsLoaded, setModelsLoaded] = useState(false);
   const [faceMatcher, setFaceMatcher] = useState(null);
   const [result, setResult] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [disableBtn, setDisableBtn] = useState(false);
 
   // Example: Array of reference images (you can load these dynamically)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const referenceImages = [
     { label: 'Try Sambath', url: '/assets/sambath.jpg' },
     { label: 'Pheakdey Rotana', url: '/assets/rotana.jpg' },
@@ -27,6 +30,7 @@ export default function FaceComparePage() {
       ]);
       setModelsLoaded(true);
       console.log('✅ FaceAPI models loaded');
+      setDisableBtn(false);
     };
     loadModels();
   }, []);
@@ -63,12 +67,13 @@ export default function FaceComparePage() {
     };
 
     if (modelsLoaded) loadReferenceFaces();
-  }, [modelsLoaded]);
+  }, [modelsLoaded, referenceImages]);
 
   // Handle webcam capture and comparison
   const handleCapture = async () => {
     if (!webcamRef.current || !faceMatcher) return;
 
+    setIsLoading(true);
     const video = webcamRef.current.video;
     const detection = await faceapi
       .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
@@ -93,12 +98,14 @@ export default function FaceComparePage() {
     const ctx = canvasRef.current.getContext('2d');
     ctx.clearRect(0, 0, displaySize.width, displaySize.height);
     faceapi.draw.drawDetections(canvasRef.current, resizedDetections);
+    setIsLoading(false);
   };
 
   return (
     <div className='face-page'>
       <div className='main'>
         <div className='left-panel'>
+          <div className='title'>Face Recongnize</div>
           <div style={{ position: 'relative', width: 320, height: 480 }}>
             <Webcam
               ref={webcamRef}
@@ -120,15 +127,17 @@ export default function FaceComparePage() {
           <h1>Student Attendance</h1>
 
           <div className='btn-checkid-cover'>
-            <button onClick={handleCapture} className='btn-checkid'>
+            <button onClick={(e) => handleCapture(e)} className='btn-checkid' disabled={disableBtn}>
               Check In
             </button>
           </div>
 
+          {isLoading && 'Loading...'}
+
           {result && (
             <div>
-              <p>Result: {result.match ? '✅ Found' : '❌ Not found'}</p>
               <p>Student Name: {result.label}</p>
+              <p>Result: {result.match ? '✅ Found' : '❌ Not found'}</p>
             </div>
           )}
         </div>

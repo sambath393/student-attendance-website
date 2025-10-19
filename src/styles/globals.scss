@@ -30,6 +30,21 @@ body {
       border: 1px solid black;
       border-radius: 20px;
       padding: 10px;
+      position: relative;
+
+      .title {
+        background-color: white;
+        border-radius: 1000px;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border: 1px solid black;
+        z-index: 100;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
     }
 
     .right-panel {
