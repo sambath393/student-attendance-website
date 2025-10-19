@@ -1,0 +1,67 @@
+@use './variables.scss' as *;
+
+@mixin responsive-width($screen, $width, $maxWidth) {
+  width: $width;
+  flex: none;
+
+  @media screen and (min-width: $screen) {
+    width: $maxWidth;
+  }
+}
+
+@mixin responsive-text($screen, $fontSize, $maxFontSize) {
+  font-size: $fontSize;
+
+  @media screen and (min-width: $screen) {
+    font-size: $maxFontSize;
+  }
+}
+
+@mixin responsive-w-h($screen, $full, $maxFull) {
+  width: $full;
+  height: $full;
+  flex: none;
+
+  @media screen and (min-width: $screen) {
+    width: $maxFull;
+    height: $maxFull;
+  }
+}
+
+@mixin responsive-padding($screen, $full, $maxFull) {
+  padding: $full;
+
+  @media screen and (min-width: $screen) {
+    padding: $maxFull;
+  }
+}
+
+@mixin screen-sm {
+  @media screen and (min-width: $sm) {
+    @content;
+  }
+}
+
+@mixin screen-md {
+  @media screen and (min-width: $md) {
+    @content;
+  }
+}
+
+@mixin screen-lg {
+  @media screen and (min-width: $lg) {
+    @content;
+  }
+}
+
+@mixin screen-xl {
+  @media screen and (min-width: $xl) {
+    @content;
+  }
+}
+
+@mixin screen-xxl {
+  @media screen and (min-width: $xxl) {
+    @content;
+  }
+}

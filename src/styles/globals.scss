@@ -1,0 +1,47 @@
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.face-page {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 10px;
+
+    @include screen-md {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+    }
+
+    .left-panel {
+      border: 1px solid black;
+      border-radius: 20px;
+      padding: 10px;
+    }
+
+    .right-panel {
+      .btn-checkid-cover {
+        .btn-checkid {
+          margin: 0;
+          padding: 10px 20px;
+          border-radius: 10px;
+          border: 2px solid blue;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

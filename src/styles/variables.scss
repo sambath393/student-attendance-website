@@ -1,0 +1,19 @@
+// Override Bootstrap variables
+$container-max-widths: (
+  sm: 540px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1440px,
+  xxl: 1920px,
+);
+
+$sm: 540px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1440px;
+$xxl: 1920px;
+
+$primary-color: var(--primary-color);
+$secordary-color: var(--secordary-color);
+$third-color: var(--third-color);
+$fouth-color: var(--fouth-color);
