@@ -17,6 +17,7 @@ export default function FaceComparePage() {
   const referenceImages = [
     { label: 'Try Sambath', url: '/assets/sambath.jpg' },
     { label: 'Pheakdey Rotana', url: '/assets/rotana.jpg' },
+    { label: 'Loas Vannith', url: '/assets/vanith.jpg' },
   ];
 
   // Load models
